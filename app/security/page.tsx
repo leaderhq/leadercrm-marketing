@@ -2,24 +2,55 @@ import type { Metadata } from 'next';
 import { SuiteBar, SiteNav, SiteFooter } from '@leader/marketing-ui';
 
 export const metadata: Metadata = {
-  title: 'Security & GDPR — LeaderLeads',
+  title: 'Security & GDPR — LeaderCRM',
   description:
-    'How LeaderLeads protects your data, your GDPR rights as a data subject, and how to exercise them.',
+    'How LeaderCRM protects your data, your GDPR rights as a data subject, and how to exercise them.',
   alternates: { canonical: '/security' },
 };
 
 const LAST_UPDATED = 'June 2026';
 
+const CRM_FOOTER_COLUMNS = [
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Features', href: '/#features' },
+      { label: 'How It Works', href: '/#how' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'System Status', href: 'https://leaderhq.io/status', external: true },
+    ],
+  },
+  {
+    heading: 'Leader Suite',
+    links: [
+      { label: 'LeaderHQ', href: 'https://leaderhq.io', external: true },
+      { label: 'LeaderLeads', href: 'https://leaderleads.io', external: true },
+      { label: 'LeaderSend', href: 'https://leadersend.io', external: true },
+      { label: 'LeaderCal', href: 'https://leadercal.io', external: true },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Security & GDPR', href: '/security' },
+    ],
+  },
+];
+
 export default function SecurityPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-zinc-900">
-      <SuiteBar appUrl="https://task.leaderhq.io" />
+      <SuiteBar appUrl="https://crm.leaderhq.io" />
       <SiteNav
-        productSuffix="Leads"
-        links={[{ label: "How It Works", href: "/how-it-works" }, { label: "Memory Moment", href: "/memory-moment" }, { label: "Solutions", href: "#" }, { label: "Blog", href: "/blog" }]}
-        ctaLabel="Get Your Free Card"
-        ctaHref="/signup"
-        loginHref="https://leads.leaderhq.io/login"
+        productSuffix="CRM"
+        links={[{ label: "Features", href: "/#features" }, { label: "How It Works", href: "/#how" }, { label: "Pricing", href: "/#pricing" }]}
+        ctaLabel="Get Started Free"
+        ctaHref="https://crm.leaderhq.io/signup"
+        loginHref="https://crm.leaderhq.io/login"
       />
       <main className="flex-1">
         <article className="mx-auto max-w-[720px] px-4 py-12 sm:px-6 sm:py-16">
@@ -43,7 +74,7 @@ export default function SecurityPage() {
 
             <Section title="How we protect your data">
               <p>
-                LeaderLeads is a product of LeaderHQ, operated by Know Freedom Technologies.
+                LeaderCRM is a product of LeaderHQ, operated by Know Freedom Technologies.
                 We apply the following measures to keep your data secure:
               </p>
               <ul className="mt-3 space-y-2 pl-5 list-disc">
@@ -85,7 +116,7 @@ export default function SecurityPage() {
               <ul className="mt-3 space-y-2 pl-5 list-disc">
                 <li>
                   <strong>Contract performance.</strong> Processing necessary to provide the
-                  LeaderLeads service you have signed up for — creating your card, storing
+                  LeaderCRM service you have signed up for — creating your card, storing
                   your lead inbox, sending Memory Moment emails.
                 </li>
                 <li>
@@ -169,7 +200,7 @@ export default function SecurityPage() {
             <Section title="Sub-processors and third-party services">
               <p>
                 We use the following categories of third-party processors to operate
-                LeaderLeads. Each is bound by a data processing agreement consistent with
+                LeaderCRM. Each is bound by a data processing agreement consistent with
                 GDPR requirements:
               </p>
               <ul className="mt-3 space-y-2 pl-5 list-disc">
@@ -192,7 +223,7 @@ export default function SecurityPage() {
 
             <Section title="Data Processing Agreement (DPA)">
               <p>
-                If you use LeaderLeads in a business context and require a Data Processing
+                If you use LeaderCRM in a business context and require a Data Processing
                 Agreement for your own GDPR compliance, email{' '}
                 <a
                   href="mailto:privacy@leaderhq.io"
@@ -242,8 +273,8 @@ export default function SecurityPage() {
         </article>
       </main>
       <SiteFooter
-        productSuffix="Leads"
-        columns={[{"heading":"Product","links":[{"label":"How It Works","href":"/how-it-works"},{"label":"Memory Moment","href":"/memory-moment"},{"label":"Event Mode","href":"/how-it-works#event-mode"},{"label":"Pricing","href":"/pricing"},{"label":"System Status","href":"https://leaderhq.io/status"}]},{"heading":"Solutions","links":[{"label":"Network Marketing","href":"/for-network-marketing"},{"label":"Conferences & Events","href":"/for-conferences"},{"label":"Summer Sales","href":"/for-summer-sales"},{"label":"Sales Teams","href":"/for-teams"},{"label":"Blog & Resources","href":"/blog"}]},{"heading":"Company","links":[{"label":"About LeaderHQ","href":"/about"},{"label":"Contact","href":"/contact"},{"label":"Privacy Policy","href":"/privacy"},{"label":"Terms of Service","href":"/terms"},{"label":"Security & GDPR","href":"/security"}]}]}
+        productSuffix="CRM"
+        columns={CRM_FOOTER_COLUMNS}
       />
     </div>
   );

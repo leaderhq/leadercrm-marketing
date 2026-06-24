@@ -3,28 +3,63 @@ import Link from 'next/link';
 import { SuiteBar, SiteNav, SiteFooter, FadeIn } from '@leader/marketing-ui';
 import { MarketingIcon, type MarketingIconName } from '../_marketing/icons';
 
-
 const FEATURED_POSTS: {slug: string; title: string; excerpt: string; category: string}[] = [];
-const APP_URL = 'https://leads.leaderhq.io';
-const GREEN_AA = '#5cb85c';
+const APP_URL = 'https://crm.leaderhq.io';
 
 export const metadata: Metadata = {
-  title: 'For Teams — LeaderLeads',
+  title: 'For Teams — LeaderCRM',
   description:
-    'One card for every rep and one real-time view of every contact your organization captures. The Team plan equips MLM downlines, D2D crews, and trade-show teams for $5/seat/month.',
+    'One CRM for every rep. See what your whole downline is working on, coach the deals that need attention, and grow your team without losing visibility.',
   alternates: { canonical: '/for-teams' },
 };
+
+const CRM_NAV_LINKS = [
+  { label: 'Features', href: '/#features' },
+  { label: 'How It Works', href: '/#how' },
+  { label: 'Pricing', href: '/#pricing' },
+];
+
+const CRM_FOOTER_COLUMNS = [
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Features', href: '/#features' },
+      { label: 'How It Works', href: '/#how' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'System Status', href: 'https://leaderhq.io/status', external: true },
+    ],
+  },
+  {
+    heading: 'Leader Suite',
+    links: [
+      { label: 'LeaderHQ', href: 'https://leaderhq.io', external: true },
+      { label: 'LeaderLeads', href: 'https://leaderleads.io', external: true },
+      { label: 'LeaderSend', href: 'https://leadersend.io', external: true },
+      { label: 'LeaderCal', href: 'https://leadercal.io', external: true },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Security & GDPR', href: '/security' },
+    ],
+  },
+];
 
 export default function ForTeamsPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-zinc-900">
-      <SuiteBar appUrl="https://task.leaderhq.io" />
+      <SuiteBar appUrl={APP_URL} />
       <SiteNav
-        productSuffix="Leads"
-        links={[{ label: "How It Works", href: "/how-it-works" }, { label: "Memory Moment", href: "/memory-moment" }, { label: "Solutions", href: "#" }, { label: "Blog", href: "/blog" }]}
-        ctaLabel="Get Your Free Card"
-        ctaHref="/signup"
-        loginHref="https://leads.leaderhq.io/login"
+        productSuffix="CRM"
+        links={CRM_NAV_LINKS}
+        ctaLabel="Get Started Free"
+        ctaHref={`${APP_URL}/signup`}
+        loginHref={`${APP_URL}/login`}
       />
       <main className="flex-1">
         <Hero />
@@ -33,21 +68,16 @@ export default function ForTeamsPage() {
         <BlogSection />
         <FinalCta />
       </main>
-      <SiteFooter
-        productSuffix="Leads"
-        columns={[{"heading":"Product","links":[{"label":"How It Works","href":"/how-it-works"},{"label":"Memory Moment","href":"/memory-moment"},{"label":"Event Mode","href":"/how-it-works#event-mode"},{"label":"Pricing","href":"/pricing"},{"label":"System Status","href":"https://leaderhq.io/status"}]},{"heading":"Solutions","links":[{"label":"Network Marketing","href":"/for-network-marketing"},{"label":"Conferences & Events","href":"/for-conferences"},{"label":"Summer Sales","href":"/for-summer-sales"},{"label":"Sales Teams","href":"/for-teams"},{"label":"Blog & Resources","href":"/blog"}]},{"heading":"Company","links":[{"label":"About LeaderHQ","href":"/about"},{"label":"Contact","href":"/contact"},{"label":"Privacy Policy","href":"/privacy"},{"label":"Terms of Service","href":"/terms"},{"label":"Security & GDPR","href":"/security"}]}]}
-      />
+      <SiteFooter productSuffix="CRM" columns={CRM_FOOTER_COLUMNS} />
     </div>
   );
 }
-
-/* ----------------------------------------------------------------- Hero -- */
 
 function Hero() {
   return (
     <section
       className="relative overflow-hidden text-white"
-      style={{ background: '#0d1b2e' }}
+      style={{ background: '#06163E' }}
     >
       <div className="mx-auto max-w-[720px] px-4 py-20 text-center sm:px-6 sm:py-24">
         <FadeIn>
@@ -55,21 +85,21 @@ function Hero() {
             For Sales Teams
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
-            One card. Every rep.
+            One CRM. Every rep.
             <br />
             One view of everything.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-zinc-300">
-            The Team plan gives every member of your organization a professional
-            LeaderLeads card — and gives leadership real-time visibility into
-            every contact they make in the field.
+            LeaderCRM gives every member of your organization a personal pipeline
+            — and gives leadership real-time visibility into every contact they
+            manage in the field.
           </p>
           <div className="mt-8">
             <Link
               href="/pricing"
               className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-green px-7 text-base font-semibold text-white shadow-md shadow-black/30 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Start your team — $5/seat/mo
+              See team pricing &rarr;
             </Link>
           </div>
         </FadeIn>
@@ -78,36 +108,32 @@ function Hero() {
   );
 }
 
-/* ---------------------------------------------------------- What's in it -- */
-
 const TEAM_FEATURES = [
-  'Everything in Pro for every seat in your organization',
-  'Assign cards to every team member or downline rep instantly',
-  'Flat team roster — see every contact captured across the organization',
-  'Memory Moment for every rep at every event',
-  'Lead inbox and instant email alerts for each team member individually',
-  'Consistent, professional card design across the entire team',
-  'Onboarding in 60 seconds per rep — no training, no tech support required',
-  'Contact count visibility by rep for performance coaching',
+  'Full CRM for every rep in your organization',
+  'Custom pipeline stages that match how your team sells',
+  'Team activity feed — see who each rep is working',
+  'Downline CRM view — coach the deals that need attention',
+  'Call logging and notes visible to the whole team',
+  'LeaderLeads sync — every card scan flows into the rep\'s pipeline',
+  'LeaderSend integration for email follow-up from the contact record',
+  'Onboarding in minutes per rep — no training required',
 ];
 
-const TEAM_FITS: { icon: MarketingIconName; title: string; body: string; proNote?: string }[] = [
+const TEAM_FITS: { icon: MarketingIconName; title: string; body: string }[] = [
   {
     icon: 'handshake',
     title: 'MLM / Direct Sales Organizations',
-    body: 'Put your whole downline on LeaderLeads. Every rep shows up to every event fully equipped with Memory Moment. Every contact rolls into your team view automatically.',
-    proNote: 'Memory Moment',
+    body: 'Put your whole downline on LeaderCRM. Every rep manages their own pipeline, you see all of it from a single downline view. Coach the reps who need it based on data, not gut feeling.',
   },
   {
     icon: 'home',
     title: 'Summer Sales & D2D Companies',
-    body: '200 reps on the doors. Real-time contact data without self-reporting. Manager visibility into field activity without a reporting system or weekly call.',
+    body: '200 reps on the doors. Real-time pipeline data without self-reporting. Manager visibility into field activity without a weekly call or spreadsheet.',
   },
   {
     icon: 'tent',
     title: 'Conference & Trade Show Teams',
-    body: 'Every rep at your booth has the same card, same Event Mode, same Memory Moment capability — consistent and professional from every single interaction at the show. Individual rep QR codes or a shared company card, both are available. Memory Moment stamps exactly which rep captured each lead, when, and where. You leave the show knowing who owns which follow-up. That context doesn\'t exist anywhere else.',
-    proNote: 'Memory Moment',
+    body: 'Every rep at your booth has their own pipeline. LeaderLeads feeds contacts automatically. Coaching flags alert you when a contact goes cold. You leave the show knowing who owns which follow-up.',
   },
 ];
 
@@ -117,17 +143,16 @@ function Includes() {
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <FadeIn>
           <h2 className="text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
-            What the Team plan includes
+            What the Executive plan includes
           </h2>
           <ul className="mt-6 space-y-3 text-base text-zinc-700">
             {TEAM_FEATURES.map((f) => (
               <li key={f} className="flex items-start gap-2.5">
                 <span
-                  className="mt-0.5 shrink-0 text-base font-bold"
-                  style={{ color: GREEN_AA }}
+                  className="mt-0.5 shrink-0 text-brand-green text-base font-bold"
                   aria-hidden
                 >
-                  ✓
+                  &#10003;
                 </span>
                 <span className="leading-relaxed">{f}</span>
               </li>
@@ -151,14 +176,6 @@ function Includes() {
                   {t.title}
                 </h3>
                 <p className="mt-2 leading-relaxed text-zinc-600">{t.body}</p>
-                {t.proNote && (
-                  <p className="mt-2 text-xs text-zinc-400">
-                    <span className="mr-1 inline-flex items-center rounded-full bg-brand-navy px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                      Pro
-                    </span>
-                    {t.proNote} is a Pro plan feature.
-                  </p>
-                )}
               </div>
             ))}
           </div>
@@ -167,8 +184,6 @@ function Includes() {
     </section>
   );
 }
-
-/* -------------------------------------------------------------- Pricing -- */
 
 interface Plan {
   name: string;
@@ -182,42 +197,46 @@ interface Plan {
 
 const PLANS: Plan[] = [
   {
-    name: 'Free',
+    name: 'Starter',
     price: '$0',
     cadence: 'forever',
+    note: 'Up to 250 contacts',
     features: [
-      'Your card + sharing',
-      'Event Mode + full-screen QR',
-      'Add to wallet',
-      'View counts',
+      'Contact management',
+      'Basic pipeline (3 stages)',
+      'Follow-up reminders',
+      'LeaderLeads sync',
     ],
-    cta: 'Get Started',
+    cta: 'Get Started Free',
   },
   {
-    name: 'Pro',
-    price: '$8',
+    name: 'Growth',
+    price: '$22',
     cadence: '/mo',
-    note: '~$6.40/mo billed yearly',
+    note: 'Unlimited contacts',
     features: [
-      'Everything in Free',
-      'Lead inbox + instant email alerts',
-      'Memory Moment + shared email',
-      'Remove the LeaderLeads footer',
+      'Everything in Starter',
+      'Custom pipeline stages',
+      'Team activity feed',
+      'Call logging & notes',
+      'LeaderSend integration',
     ],
-    cta: 'Start Pro',
+    cta: 'Start Free Trial',
   },
   {
-    name: 'Team',
-    price: '$5',
-    cadence: '/seat/mo',
-    note: '5-seat minimum',
+    name: 'Executive',
+    price: '$45',
+    cadence: '/mo',
+    note: 'For serious leaders',
     features: [
-      'Everything in Pro for every seat',
-      'Assign seats to your downline',
-      'Flat team roster',
+      'Everything in Growth',
+      'Downline CRM view',
+      'Coaching flags & alerts',
+      'Advanced reporting',
+      'Priority support',
     ],
     highlighted: true,
-    cta: 'Start a team',
+    cta: 'Start Free Trial',
   },
 ];
 
@@ -225,7 +244,7 @@ function Pricing() {
   return (
     <section
       className="border-y border-zinc-100"
-      style={{ background: 'color-mix(in srgb, #5cb85c 6%, #fff)' }}
+      style={{ background: 'color-mix(in srgb, #5CAC23 6%, #fff)' }}
     >
       <div className="mx-auto max-w-[1100px] px-4 py-20 sm:px-6 sm:py-24">
         <FadeIn>
@@ -247,10 +266,7 @@ function Pricing() {
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-brand-navy">{plan.name}</h3>
                 {plan.highlighted && (
-                  <span
-                    className="rounded-full px-2.5 py-0.5 text-xs font-semibold text-white"
-                    style={{ backgroundColor: GREEN_AA }}
-                  >
+                  <span className="rounded-full bg-brand-green px-2.5 py-0.5 text-xs font-semibold text-white">
                     Best for teams
                   </span>
                 )}
@@ -267,15 +283,13 @@ function Pricing() {
               <ul className="mt-5 flex-1 space-y-2.5 text-sm text-zinc-600">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span style={{ color: GREEN_AA }} aria-hidden>
-                      ✓
-                    </span>
+                    <span className="text-brand-green" aria-hidden>&#10003;</span>
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
               <a
-                href={`${APP_URL}/login`}
+                href={`${APP_URL}/signup`}
                 className={`mt-6 inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-4 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 ${
                   plan.highlighted
                     ? 'bg-brand-green text-white hover:brightness-110 focus-visible:outline-brand-navy'
@@ -292,9 +306,8 @@ function Pricing() {
   );
 }
 
-/* ------------------------------------------------------------ Final CTA -- */
-
 function BlogSection() {
+  if (FEATURED_POSTS.length === 0) return null;
   return (
     <section className="border-t border-zinc-100 bg-white py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -309,7 +322,7 @@ function BlogSection() {
               <span className="self-start rounded-full bg-brand-green/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-brand-green">{post.category.replace('-', ' ')}</span>
               <h4 className="mt-3 text-lg font-bold leading-snug text-brand-navy">{post.title}</h4>
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600">{post.excerpt}</p>
-              <span className="mt-4 text-sm font-semibold text-brand-green">Read more →</span>
+              <span className="mt-4 text-sm font-semibold text-brand-green">Read more &rarr;</span>
             </Link>
           ))}
         </div>
@@ -320,23 +333,23 @@ function BlogSection() {
 
 function FinalCta() {
   return (
-    <section style={{ background: '#0d1b2e' }}>
+    <section style={{ background: '#06163E' }}>
       <div className="mx-auto max-w-[1100px] px-4 py-20 text-center sm:px-6 sm:py-24">
         <FadeIn>
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-green">
-            Your rep will have a professional card with Memory Moment before tomorrow morning.
+            Your team can be up and running today.
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Your team&apos;s first card is waiting.
+            Give every rep a CRM that actually gets used.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lg text-zinc-300">
-            Assign your first seat tonight.
+            Start on the Starter plan free. Upgrade to Executive when your team needs the downline view.
           </p>
           <a
-            href={`${APP_URL}/login`}
+            href={`${APP_URL}/signup`}
             className="mt-8 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-green px-7 text-base font-semibold text-white shadow-lg shadow-black/20 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            Start a team
+            Get Started Free
           </a>
         </FadeIn>
       </div>

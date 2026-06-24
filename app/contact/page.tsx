@@ -3,32 +3,70 @@ import { SuiteBar, SiteNav, SiteFooter, FadeIn } from '@leader/marketing-ui';
 import { MarketingIcon } from '@/app/_marketing/icons';
 
 export const metadata: Metadata = {
-  title: 'Contact — LeaderLeads',
+  title: 'Contact — LeaderCRM',
   description:
-    'Get in touch with LeaderLeads — product questions, team plans, custom pricing, and partnership inquiries. We respond within one business day.',
+    'Get in touch with LeaderCRM — product questions, team plans, custom pricing, and partnership inquiries. We respond within one business day.',
   alternates: { canonical: '/contact' },
 };
 
-// Marketing form posts to mailto for now — the app/auth origin handles real
-// inbound on leads.leaderhq.io. Keeps this page a server component.
+const APP_URL = 'https://crm.leaderhq.io';
+
+const CRM_NAV_LINKS = [
+  { label: 'Features', href: '/#features' },
+  { label: 'How It Works', href: '/#how' },
+  { label: 'Pricing', href: '/#pricing' },
+];
+
+const CRM_FOOTER_COLUMNS = [
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Features', href: '/#features' },
+      { label: 'How It Works', href: '/#how' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'System Status', href: 'https://leaderhq.io/status', external: true },
+    ],
+  },
+  {
+    heading: 'Leader Suite',
+    links: [
+      { label: 'LeaderHQ', href: 'https://leaderhq.io', external: true },
+      { label: 'LeaderLeads', href: 'https://leaderleads.io', external: true },
+      { label: 'LeaderSend', href: 'https://leadersend.io', external: true },
+      { label: 'LeaderCal', href: 'https://leadercal.io', external: true },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Security & GDPR', href: '/security' },
+    ],
+  },
+];
+
+// Marketing form posts to mailto for now. Keeps this page a server component.
 const SUPPORT_EMAIL = 'support@leaderhq.io';
 
 export default function ContactPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-zinc-900">
-      <SuiteBar appUrl="https://task.leaderhq.io" />
+      <SuiteBar appUrl={APP_URL} />
       <SiteNav
-        productSuffix="Leads"
-        links={[{ label: "How It Works", href: "/how-it-works" }, { label: "Memory Moment", href: "/memory-moment" }, { label: "Solutions", href: "#" }, { label: "Blog", href: "/blog" }]}
-        ctaLabel="Get Your Free Card"
-        ctaHref="/signup"
-        loginHref="https://leads.leaderhq.io/login"
+        productSuffix="CRM"
+        links={CRM_NAV_LINKS}
+        ctaLabel="Get Started Free"
+        ctaHref={`${APP_URL}/signup`}
+        loginHref={`${APP_URL}/login`}
       />
       <main className="flex-1">
         {/* Hero */}
         <section
           className="text-center text-white"
-          style={{ background: '#0d1b2e' }}
+          style={{ background: '#06163E' }}
         >
           <div className="mx-auto max-w-[560px] px-4 py-20 sm:px-6 sm:py-24">
             <FadeIn>
@@ -199,8 +237,8 @@ export default function ContactPage() {
         </section>
       </main>
       <SiteFooter
-        productSuffix="Leads"
-        columns={[{"heading":"Product","links":[{"label":"How It Works","href":"/how-it-works"},{"label":"Memory Moment","href":"/memory-moment"},{"label":"Event Mode","href":"/how-it-works#event-mode"},{"label":"Pricing","href":"/pricing"},{"label":"System Status","href":"https://leaderhq.io/status"}]},{"heading":"Solutions","links":[{"label":"Network Marketing","href":"/for-network-marketing"},{"label":"Conferences & Events","href":"/for-conferences"},{"label":"Summer Sales","href":"/for-summer-sales"},{"label":"Sales Teams","href":"/for-teams"},{"label":"Blog & Resources","href":"/blog"}]},{"heading":"Company","links":[{"label":"About LeaderHQ","href":"/about"},{"label":"Contact","href":"/contact"},{"label":"Privacy Policy","href":"/privacy"},{"label":"Terms of Service","href":"/terms"},{"label":"Security & GDPR","href":"/security"}]}]}
+        productSuffix="CRM"
+        columns={CRM_FOOTER_COLUMNS}
       />
     </div>
   );
