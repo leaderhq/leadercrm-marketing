@@ -1,17 +1,17 @@
 
 /**
- * LeaderLeads brand wordmark + mark (part of the Leader family).
+ * LeaderCRM brand wordmark + mark (part of the Leader family).
  *
  * The mark is three stacked chevrons climbing — brand green, navy, blue from
- * bottom to top. The wordmark sets "Leader" in navy and "Leads" in green using
+ * bottom to top. The wordmark sets "Leader" in navy and "CRM" in green using
  * a bold geometric system font stack. Colors are hard-coded brand hexes rather
  * than CSS variables so the SVG renders identically wherever it is embedded
  * (dashboard chrome, the public card footer, OG snapshots).
  */
 
-const NAVY = '#0d1b2e';
-const GREEN = '#5cb85c';
-const BLUE = '#0160ed';
+const NAVY = '#06163E';
+const GREEN = '#5CAC23';
+const BLUE = '#1862EA';
 
 const GEOMETRIC_STACK =
   '"Geist", "Inter", "Helvetica Neue", Arial, system-ui, sans-serif';
@@ -36,7 +36,7 @@ export function LeaderMark({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="LeaderLeads"
+      aria-label="LeaderCRM"
       className={className}
     >
       {/* bottom chevron — green */}
@@ -51,8 +51,8 @@ export function LeaderMark({
 
 
 /**
- * Full lockup: the official LeaderLeads wordmark (chevron mark + two-tone
- * "LeaderLeads" in the brand font). Served as a transparent SVG asset so the
+ * Full lockup: the official LeaderCRM wordmark (chevron mark + two-tone
+ * "LeaderCRM" in the brand font). Served as a transparent SVG asset so the
  * exact brand typography renders crisply at any size. Aspect ratio ~5.6:1.
  */
 export function Wordmark({
@@ -66,8 +66,8 @@ export function Wordmark({
   return (
     // eslint-disable-next-line @next/next/no-img-element -- static brand SVG, no next/image needed
     <img
-      src="/brand/LeaderLeads_wordmark.svg"
-      alt="LeaderLeads"
+      src="/brand/LeaderCRM_wordmark.svg"
+      alt="LeaderCRM"
       style={{ width: 'auto', display: 'block', ...(height ? { height } : {}) }}
       className={className}
     />

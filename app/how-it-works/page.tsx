@@ -2,115 +2,116 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SuiteBar, SiteNav, SiteFooter, FadeIn } from '@leader/marketing-ui';
 
-const APP_URL = 'https://leads.leaderhq.io';
+const APP_URL = 'https://crm.leaderhq.io';
 
 export const metadata: Metadata = {
-  title: 'How It Works — LeaderLeads',
+  title: 'How It Works — LeaderCRM',
   description:
-    'From handshake to Leader CRM in one tap. Five steps, under two minutes to set up — see exactly how LeaderLeads captures, stamps, and follows up on every lead.',
+    'From new lead to closed contact in four steps. LeaderCRM connects directly to LeaderLeads so contacts flow in automatically — no import, no data entry, no manual work.',
   alternates: { canonical: '/how-it-works' },
 };
+
+const CRM_NAV_LINKS = [
+  { label: 'Features', href: '/#features' },
+  { label: 'How It Works', href: '/#how' },
+  { label: 'Pricing', href: '/#pricing' },
+];
+
+const CRM_FOOTER_COLUMNS = [
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Features', href: '/#features' },
+      { label: 'How It Works', href: '/#how' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'System Status', href: 'https://leaderhq.io/status', external: true },
+    ],
+  },
+  {
+    heading: 'Leader Suite',
+    links: [
+      { label: 'LeaderHQ', href: 'https://leaderhq.io', external: true },
+      { label: 'LeaderLeads', href: 'https://leaderleads.io', external: true },
+      { label: 'LeaderSend', href: 'https://leadersend.io', external: true },
+      { label: 'LeaderCal', href: 'https://leadercal.io', external: true },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Security & GDPR', href: '/security' },
+    ],
+  },
+];
 
 const LINK_CLASS = 'text-brand-green font-semibold hover:underline';
 
 const STEPS: { n: number; title: string; body: React.ReactNode }[] = [
   {
     n: 1,
-    title: 'Create your card in 60 seconds',
-    body: 'Click "Get Your Free Card," add your name, title, and contact info. Your professional digital card is live immediately. No design skills, no waiting period, no credit card required. Just a card that works.',
+    title: 'Contacts flow in automatically from LeaderLeads',
+    body: (
+      <>
+        Every card scan and lead captured in{' '}
+        <a href="https://leaderleads.io" className={LINK_CLASS}>
+          LeaderLeads
+        </a>{' '}
+        flows directly into your LeaderCRM pipeline. No CSV import, no copy-paste, no manual
+        data entry. Your CRM is always current — the moment they scan your card,
+        they appear in your pipeline.
+      </>
+    ),
   },
   {
     n: 2,
-    title: 'Add to your wallet. Activate Event Mode.',
-    body: "Add your card to Apple Wallet or Google Wallet — one tap and it's there permanently, available even with no signal. Then activate Event Mode: one tap turns your entire screen into a high-contrast QR that anyone can scan from their camera app with no download required.",
+    title: 'Or import a CSV in seconds',
+    body: 'Already have a contact list? Upload a CSV and your existing leads land in your pipeline instantly. LeaderCRM maps the fields automatically — name, phone, email, notes — and you are ready to work.',
   },
   {
     n: 3,
-    title: 'Share at any event — QR, text, link, or phone tap',
-    body: (
-      <>
-        At your next meeting, expo, conference, or door-to-door stop, share however fits the
-        moment. Hold up the QR screen. Text the link. Or use NFC — Near-Field Communication, the built-in feature on most modern smartphones that transfers your contact in one touch, no scanning required. Think of it like a digital handshake: two phones tap and it&apos;s done.{' '}
-        <Link href="/how-it-works#event-mode" className={LINK_CLASS}>
-          Event Mode
-        </Link>{' '}
-        means the person you&apos;re talking to saves your contact in seconds
-        with no friction on their end — no app, no login, no steps.
-      </>
-    ),
+    title: 'Work your pipeline from your phone or desktop',
+    body: 'Move contacts through stages, log call notes, and set follow-up reminders — all from one screen. Stages match how field leaders actually sell: New Lead, Engaged, Presented, Follow Up, Closed. No custom admin required.',
   },
   {
     n: 4,
-    title: 'Memory Moment — stamp the meeting (Pro)',
-    body: (
-      <>
-        For your warmest conversations, take a quick photo together.{' '}
-        <Link href="/memory-moment" className={LINK_CLASS}>
-          Memory Moment
-        </Link>{' '}
-        stamps the date, time, and location and emails it to both of you within
-        seconds. They have the context. You have the opener. Tuesday&apos;s
-        follow-up writes itself before you&apos;ve opened a blank email.
-      </>
-    ),
-  },
-  {
-    n: 5,
-    title: 'Follow up with everyone. Miss no one.',
-    body: (
-      <>
-        Your lead inbox captures every person who engages with your card,
-        organized by timestamp. Your running list is always current and ready
-        to work. Contacts flow natively into{' '}
-        <Link href="/for-teams" className={LINK_CLASS}>
-          Leader CRM
-        </Link>{' '}
-        — the CRM built for the Leader Suite — or connect to Salesforce,
-        HubSpot, and hundreds of other tools via{' '}
-        <a
-          href="https://zapier.com"
-          target="_blank"
-          rel="noreferrer"
-          className={LINK_CLASS}
-        >
-          Zapier
-        </a>
-        . The reconstruction work that used to take an hour after every event
-        now takes minutes.
-      </>
-    ),
+    title: 'Follow up with everyone. Never let a contact go cold.',
+    body: 'LeaderCRM surfaces who needs a touchpoint today. Set a reminder once and walk away. Every morning you open the app to a clear action list — who to call, who to text, who to close. No prospect falls through the cracks.',
   },
 ];
 
 const FAQS = [
   {
-    q: 'Do they need to download an app?',
-    a: "No. Never. The person receiving your card needs only a phone camera to scan your QR code. No app, no account, no friction on their side. That's intentional — every extra step they have to take is a lead you lose before the conversation even ends.",
+    q: 'Does LeaderCRM work without LeaderLeads?',
+    a: "Yes. You can import contacts via CSV or add them manually. But the fastest way to fill your pipeline is with LeaderLeads — every card scan becomes a CRM contact automatically. If you're in the Leader ecosystem, the two products are wired together.",
   },
   {
-    q: 'What if the venue wifi goes down?',
-    a: 'Two things work completely offline after you\'ve opened them once. Event Mode saves your card locally the first time you load it — after that, the QR generates on-device with no server call, no wifi, no signal required. Your digital wallet card (Apple Wallet or Google Wallet) is stored on your device the moment you add it, available even in airplane mode. Open Event Mode once before you leave for the venue and you\'re covered. Hold up the screen, they scan, done.',
+    q: 'Can I track my whole downline from one view?',
+    a: "Yes — on the Executive plan. The Downline CRM view shows what every member of your team is working on, which contacts need attention, and who's at risk of going cold. You coach from the overview and drill in when needed.",
   },
   {
-    q: 'How does Memory Moment work exactly?',
-    a: 'Memory Moment requires a contact first — the person needs to have scanned your card so they exist in your leads. Once they do, open that lead, tap Add Memory Moment, and it opens your camera. Take the photo together right there in the moment. LeaderLeads automatically stamps the date, time, and location on the image and emails it to both of you within seconds. No editing, no uploading, no extra steps from either side.',
+    q: 'How does the follow-up reminder system work?',
+    a: "Open any contact, set a reminder — date, time, and a note. LeaderCRM surfaces that contact on the day you set. You get a notification, open the app, see the context you logged, and make the call. It is not a complex drip sequence. It is a simple, reliable nudge that makes sure you follow up.",
   },
   {
-    q: 'How does it flow into my CRM?',
-    a: "Every contact that engages with your card appears in your lead inbox with a timestamp. If you want it fully automatic — contacts flowing into your CRM the moment someone scans your card — that requires LeaderCRM, which is built to work hand-in-hand with LeaderLeads. For any other system (Salesforce, HubSpot, etc.) you export or upload your contacts manually, or set up a Zapier automation yourself. Zapier can handle the transfer once configured, but it is not automatic out of the box.",
+    q: 'Does it integrate with other tools?',
+    a: "LeaderCRM is built to live inside the Leader Suite — LeaderSend for email follow-up, LeaderCal for booking calls, LeaderLeads for lead capture. For external tools, you can export contacts at any time. Full Zapier integration is on the roadmap.",
   },
 ];
 
 export default function HowItWorksPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-zinc-900">
-      <SuiteBar appUrl="https://task.leaderhq.io" />
+      <SuiteBar appUrl={APP_URL} />
       <SiteNav
-        productSuffix="Leads"
-        links={[{ label: "How It Works", href: "/how-it-works" }, { label: "Memory Moment", href: "/memory-moment" }, { label: "Solutions", href: "#" }, { label: "Blog", href: "/blog" }]}
-        ctaLabel="Get Your Free Card"
-        ctaHref="/signup"
-        loginHref="https://leads.leaderhq.io/login"
+        productSuffix="CRM"
+        links={CRM_NAV_LINKS}
+        ctaLabel="Get Started Free"
+        ctaHref={`${APP_URL}/signup`}
+        loginHref={`${APP_URL}/login`}
       />
       <main className="flex-1">
         <Hero />
@@ -118,10 +119,7 @@ export default function HowItWorksPage() {
         <Faqs />
         <CtaBand />
       </main>
-      <SiteFooter
-        productSuffix="Leads"
-        columns={[{"heading":"Product","links":[{"label":"How It Works","href":"/how-it-works"},{"label":"Memory Moment","href":"/memory-moment"},{"label":"Event Mode","href":"/how-it-works#event-mode"},{"label":"Pricing","href":"/pricing"},{"label":"System Status","href":"https://leaderhq.io/status"}]},{"heading":"Solutions","links":[{"label":"Network Marketing","href":"/for-network-marketing"},{"label":"Conferences & Events","href":"/for-conferences"},{"label":"Summer Sales","href":"/for-summer-sales"},{"label":"Sales Teams","href":"/for-teams"},{"label":"Blog & Resources","href":"/blog"}]},{"heading":"Company","links":[{"label":"About LeaderHQ","href":"/about"},{"label":"Contact","href":"/contact"},{"label":"Privacy Policy","href":"/privacy"},{"label":"Terms of Service","href":"/terms"},{"label":"Security & GDPR","href":"/security"}]}]}
-      />
+      <SiteFooter productSuffix="CRM" columns={CRM_FOOTER_COLUMNS} />
     </div>
   );
 }
@@ -130,7 +128,7 @@ function Hero() {
   return (
     <section
       className="text-white"
-      style={{ background: '#0d1b2e' }}
+      style={{ background: '#06163E' }}
     >
       <div className="mx-auto max-w-[720px] px-4 py-20 text-center sm:px-6 sm:py-24">
         <FadeIn>
@@ -138,13 +136,14 @@ function Hero() {
             Simple by design
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl">
-            From handshake to CRM
+            New lead to closed contact
             <br />
-            in one tap.
+            in four steps.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-zinc-300">
-            Five steps. Under two minutes for setup. Works for the life of the
-            card — no maintenance, no reprints, no expiration.
+            Contacts flow in from LeaderLeads automatically. You work your
+            pipeline, set reminders, and follow up with everyone — no admin
+            required.
           </p>
         </FadeIn>
       </div>
@@ -180,7 +179,7 @@ function Faqs() {
   return (
     <section
       className="border-y border-zinc-100"
-      style={{ background: 'color-mix(in srgb, #0d1b2e 4%, #fff)' }}
+      style={{ background: 'color-mix(in srgb, #06163E 4%, #fff)' }}
     >
       <div className="mx-auto max-w-[720px] px-4 py-20 sm:px-6 sm:py-24">
         <FadeIn>
@@ -207,31 +206,31 @@ function Faqs() {
 
 function CtaBand() {
   return (
-    <section style={{ background: '#0d1b2e' }}>
+    <section style={{ background: '#06163E' }}>
       <div className="mx-auto max-w-[820px] px-4 py-20 text-center sm:px-6 sm:py-24">
         <FadeIn>
           <span className="text-sm font-semibold uppercase tracking-wider text-brand-green">
             Ready to see it in action?
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Your card is free. Setup is 60 seconds.
+            Start free. Import your contacts. Go.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lg text-zinc-300">
-            Your next event is the test. Show up with a system instead of a
-            stack of paper.
+            No onboarding call. No credit card. Starter plan is free forever.
+            Your next follow-up is two minutes away.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={`${APP_URL}/login`}
+              href={`${APP_URL}/signup`}
               className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-green px-7 text-base font-semibold text-white shadow-lg shadow-black/20 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Get Your Free Card
+              Get Started Free
             </a>
             <Link
               href="/pricing"
               className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-white/30 px-5 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              See Pricing →
+              See Pricing &rarr;
             </Link>
           </div>
         </FadeIn>
