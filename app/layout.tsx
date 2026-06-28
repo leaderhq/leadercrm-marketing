@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   title: "LeaderCRM — The CRM built for field leaders",
   description: "LeaderCRM gives network marketing leaders a simple way to manage contacts, track their pipeline, and follow up with every prospect — without the complexity of traditional CRMs.",
   applicationName: "LeaderCRM",
+  icons: {
+    icon: [
+      { url: "/favicon-light.png", type: "image/png", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-dark.png", type: "image/png", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
